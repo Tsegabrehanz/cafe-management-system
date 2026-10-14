@@ -1,0 +1,37 @@
+CAFE MANAGEMENT SYSTEM - HOW TO RUN (Ubuntu)
+============================================
+
+FIRST TIME (installs Java 17, Maven, Node 20 if missing, builds, starts):
+
+    cd cafe-management-system
+    ./setup.sh
+
+Wait for "Started CafeApplication" (first time: a few minutes), then open:
+
+    http://localhost:8081               main page
+    http://localhost:8081/online/menu   online ordering for customers
+    Staff login: admin@cafe.com / admin123   (change it after logging in)
+
+Stop: Ctrl+C
+
+NEXT TIMES (no rebuild, starts in seconds):
+
+    ./build-and-run.sh --no-build
+
+AFTER CHANGING CODE (rebuild + start):
+
+    ./build-and-run.sh
+
+START FRESH (delete all data; admin + sample menu come back on next start):
+
+    ./reset-database.sh
+
+OPTIONAL
+    ./build-and-run.sh mysql      run with MySQL (first: sudo mysql < database/cafe-mysql.sql)
+    cd backend && mvn test        run the automated tests
+    ./start-backend.sh + ./start-frontend.sh   development mode (frontend on :4200, live reload)
+
+PROBLEMS
+    "Permission denied"        ->  chmod +x *.sh
+    "Port 8081 already in use" ->  an old copy is running: close it, or  sudo lsof -i :8081
+    Any other error            ->  copy the last 20 lines of the terminal

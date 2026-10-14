@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+data/
+*.log
+src/main/resources/static/
